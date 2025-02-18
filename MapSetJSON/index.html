@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Document</title>
+</head>
+<body>
+
+  <h1>Map and JSON Examples</h1>
+
+  <input type="text" class="myInput">
+  <input type="text" class="myInput">
+  <input type="text" class="myInput">
+
+  <p class="clickable">Абзац 1</p>
+  <p class="clickable">Абзац 2</p>
+  <p class="clickable">Абзац 3</p>
+
+  <button id="addButton">Добавить восклицательные знаки</button>
+
+  <div id="jsonOutput"></div>
+
+  <ul>
+    <li>city1</li>
+    <li>city2</li>
+    <li>city3</li>
+    <li>city4</li>
+  </ul>
+
+  <script>
+    const inputs = document.querySelectorAll('.myInput');
+    const inputMap = new Map();
+
+    inputs.forEach((input, index) => {
+      inputMap.set(input, index + 1);
+
+      input.addEventListener('click', () => {
+        input.value = inputMap.get(input);
+      });
+    });
+
+    const clickableParagraphs = document.querySelectorAll('.clickable');
+    const clickedParagraphs = new Set();
+
+    clickableParagraphs.forEach(paragraph => {
+      paragraph.addEventListener('click', () => {
+        clickedParagraphs.add(paragraph);
+      });
+    });
+
+    const addButton = document.getElementById('addButton');
+    addButton.addEventListener('click', () => {
+      clickedParagraphs.forEach(paragraph => {
+        paragraph.textContent += '!';
+      });
+    });
+
+    let json3 = '["user1","user2","user3","user4","user5"]';
+    let users = JSON.parse(json3);
+    const jsonOutput = document.getElementById('jsonOutput');
+    const ul3 = document.createElement('ul');
+
+    users.forEach(user => {
+      const li = document.createElement('li');
+      li.textContent = user;
+      ul3.appendChild(li);
+    });
+
+    jsonOutput.appendChild(ul3);
+
+    let json4 = '["user1","user2","user3","user4","user5"]';
+    let users4 = JSON.parse(json4);
+    users4[1] = "new_user2";
+    let updatedJson = JSON.stringify(users4);
+    console.log('Задание 4 (новый JSON):', updatedJson);
+
+    const ul5 = document.querySelector('ul');
+    const cities = [];
+    const cityElements = ul5.querySelectorAll('li');
+
+    cityElements.forEach(cityElement => {
+      cities.push(cityElement.textContent);
+    });
+
+    const json5 = JSON.stringify(cities);
+    console.log('Задание 5 (JSON):', json5);
+  </script>
+
+</body>
+</html>

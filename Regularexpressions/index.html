@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Document</title>
+</head>
+<body>
+
+  <h1>Regular Expression Examples</h1>
+
+  <p>See console for results.</p>
+
+  <script>
+    let str1 = 'ahb acb aeb aeeb adcb axeb';
+    let regex1 = /a.b/g;
+    let result1 = str1.match(regex1);
+    console.log('Задание 1:', result1);
+
+    let str2 = 'aa aba abba abbba abca abea';
+    let regex2 = /ab+a/g;
+    let result2 = str2.match(regex2);
+    console.log('Задание 2:', result2);
+
+    let str3 = 'aba aea aca aza axa';
+    let regex3 = /a[bex]a/g;
+    let result3 = str3.match(regex3);
+    console.log('Задание 3:', result3);
+
+    let str4 = 'aba aea afa aha aga';
+    let regex4 = /a[a-fj-z]a/g;
+    let result4 = str4.match(regex4);
+    console.log('Задание 4:', result4);
+
+    let str5 = 'aeeea aeea aea axa axxa axxxa';
+    let regex5 = /a(e+|x+)a/g;
+    let result5 = str5.match(regex5);
+    console.log('Задание 5:', result5);
+  </script>
+
+</body>
+</html>
+

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Document</title>
+</head>
+<body>
+
+  <h1>Задание 1</h1>
+  <button id="button1">Увеличить число</button>
+  <p id="paragraph1">0</p>
+
+  <h1>Задание 2</h1>
+  <button id="button2">Уменьшить число</button>
+  <p id="paragraph2">10</p>
+
+  <h1>Задание 3</h1>
+  <input type="number" id="input3">
+  <p id="paragraph3"></p>
+
+  <h1>Задание 4</h1>
+  <input type="number" id="input4">
+  <button id="button4">Запустить отсчет</button>
+  <p id="paragraph4"></p>
+
+  <h1>Задание 5</h1>
+  <p id="paragraph5"></p>
+
+  <script>
+    const button1 = document.getElementById('button1');
+    const paragraph1 = document.getElementById('paragraph1');
+    let counter1 = parseInt(paragraph1.textContent);
+    let intervalId1;
+
+    button1.addEventListener('click', () => {
+      if (!intervalId1) {
+        intervalId1 = setInterval(() => {
+          counter1++;
+          paragraph1.textContent = counter1;
+        }, 1000);
+      }
+    });
+
+    const button2 = document.getElementById('button2');
+    const paragraph2 = document.getElementById('paragraph2');
+    let counter2 = parseInt(paragraph2.textContent);
+    let intervalId2;
+
+    button2.addEventListener('click', () => {
+      if (!intervalId2) {
+        intervalId2 = setInterval(() => {
+          counter2--;
+          paragraph2.textContent = counter2;
+          if (counter2 === 0) {
+            clearInterval(intervalId2);
+            intervalId2 = null;
+          }
+        }, 1000);
+      }
+    });
+
+    const input3 = document.getElementById('input3');
+    const paragraph3 = document.getElementById('paragraph3');
+    let intervalId3;
+
+    input3.addEventListener('blur', () => {
+      let startValue = parseInt(input3.value);
+
+      if (isNaN(startValue)) {
+        paragraph3.textContent = "Введите число!";
+        return;
+      }
+
+      if(intervalId3){
+          clearInterval(intervalId3);
+          intervalId3 = null;
+      }
+
+      let counter3 = startValue;
+      paragraph3.textContent = counter3;
+
+      intervalId3 = setInterval(() => {
+        counter3--;
+        paragraph3.textContent = counter3;
+
+        if (counter3 === 0) {
+          clearInterval(intervalId3);
+          intervalId3 = null;
+        }
+      }, 1000);
+    });
+
+    const input4 = document.getElementById('input4');
+    const button4 = document.getElementById('button4');
+    const paragraph4 = document.getElementById('paragraph4');
+    let intervalId4;
+
+    button4.addEventListener('click', () => {
+      let startValue = parseInt(input4.value);
+
+      if (isNaN(startValue)) {
+        paragraph4.textContent = "Введите число!";
+        return;
+      }
+
+      if(intervalId4){
+          clearInterval(intervalId4);
+          intervalId4 = null;
+      }
+
+
+      let counter4 = startValue;
+      paragraph4.textContent = counter4;
+
+      intervalId4 = setInterval(() => {
+        counter4--;
+        paragraph4.textContent = counter4;
+
+        if (counter4 === 0) {
+          clearInterval(intervalId4);
+          intervalId4 = null;
+        }
+      }, 1000);
+    });
+
+    const paragraph5 = document.getElementById('paragraph5');
+
+    setTimeout(() => {
+      paragraph5.textContent = "Сообщение через 10 секунд!";
+    }, 10000);
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Document</title>
+</head>
+<body>
+
+  <h1 id="heading">DOM Manipulation Functions</h1>
+
+  <p class="paragraph">Это первый абзац.</p>
+  <p class="paragraph">Это второй абзац.</p>
+  <p class="paragraph">Это третий абзац.</p>
+
+  <ul id="myList">
+    <li>Элемент 1</li>
+    <li>Элемент 2</li>
+    <li>Элемент 3</li>
+  </ul>
+
+  <script>
+    function setAttr(selector, attributeName, newValue) {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach(element => {
+        element.setAttribute(attributeName, newValue);
+      });
+    }
+
+    function appendText(selector, text) {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach(element => {
+        element.textContent += text;
+      });
+    }
+
+    function appendTextToElement(element, text) {
+      element.textContent += text;
+    }
+
+    const paragraphs = document.querySelectorAll('.paragraph');
+    paragraphs.forEach(paragraph => {
+      appendTextToElement(paragraph, '!');
+    });
+
+    function appendElem(ulElement, text) {
+      const li = document.createElement('li');
+      li.textContent = text;
+      ulElement.appendChild(li);
+    }
+  </script>
+
+</body>
+</html>
+

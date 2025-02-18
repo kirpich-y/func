@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Document</title>
+</head>
+<body>
+
+  <h1>Задание 1</h1>
+  <ol id="ol1"></ol>
+  <button id="button1">Добавить элемент</button>
+
+  <h1>Задание 2</h1>
+  <ol id="ol2"></ol>
+  <button id="button2">Добавить LI с восклицательным знаком</button>
+
+  <h1>Задание 3</h1>
+  <ul id="ul3"></ul>
+
+  <h1>Задание 4</h1>
+  <ul id="ul4">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+  </ul>
+
+  <h1>Задание 5</h1>
+  <ul id="ul5"></ul>
+
+  <h1>Задание 6</h1>
+  <input type="text" id="input6">
+  <button id="button6">Клонировать инпут</button>
+
+  <h1>Задание 7</h1>
+  <div id="element7">Это пример элемента.</div>
+
+  <script>
+    const ol1 = document.getElementById('ol1');
+    const button1 = document.getElementById('button1');
+
+    button1.addEventListener('click', () => {
+      const li = document.createElement('li');
+      li.textContent = 'item';
+      ol1.appendChild(li);
+    });
+
+    const ol2 = document.getElementById('ol2');
+    const button2 = document.getElementById('button2');
+
+    button2.addEventListener('click', () => {
+      const li = document.createElement('li');
+      ol2.appendChild(li);
+
+      li.addEventListener('click', () => {
+        li.textContent += '!';
+      });
+    });
+
+    const ul3 = document.getElementById('ul3');
+    for (let i = 1; i <= 10; i++) {
+      const li = document.createElement('li');
+      li.textContent = i.toString();
+      ul3.appendChild(li);
+    }
+
+    const ul4 = document.getElementById('ul4');
+    ul4.addEventListener('click', (event) => {
+      if (event.target.tagName === 'LI') {
+        event.target.remove();
+      }
+    });
+
+    const ul5 = document.getElementById('ul5');
+    const liStart = document.createElement('li');
+    liStart.textContent = 'start';
+    ul5.prepend(liStart);
+
+    const liFinish = document.createElement('li');
+    liFinish.textContent = 'finish';
+    ul5.appendChild(liFinish);
+
+    const input6 = document.getElementById('input6');
+    const button6 = document.getElementById('button6');
+
+    button6.addEventListener('click', () => {
+      const clonedInput = input6.cloneNode(true);
+      document.body.appendChild(clonedInput);
+    });
+
+    const element7 = document.getElementById('element7');
+
+    function isParagraph(element) {
+      return element.tagName === 'P';
+    }
+
+    if (isParagraph(element7)) {
+      console.log('Элемент является абзацем.');
+    } else {
+      console.log('Элемент не является абзацем.');
+    }
+  </script>
+
+</body>
+</html>
+
