@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+    </style>
+</head>
+<body>
+    <div id="task1"></div>
+
+    <script>
+        $(document).ready(function() {
+            //1
+            for (let i = 0; i < 5; i++) {
+                $('#task1').append('<p></p>');
+            }
+            $('p').html('Юля');
+
+            //2
+            $('#task1').after('<div id="task2"></div>');
+            for (let i = 0; i < 4; i++) {
+                $('#task2').append('<p>С другой стороны, укрепление и развитие внутренней структуры обеспечивает актуальность своевременного выполнения сверхзадачи.</p>');
+            }
+            $('#task2 p').css({
+                'font-size': '14px',
+                'color': 'blue'
+            });
+
+            //3
+            $('#task2').after('<div id="task3"></div>');
+            for (let i = 0; i < 3; i++) {
+                $('#task3').append('<h3 class="header3">Заголовок h3</h3>');
+            }
+            $('#task3').append('<h1 id="header1">Главный заголовок</h1>');
+
+            $('.header3').css({
+                'font-size': '12px',
+                'color': 'green'
+            });
+
+            $('#header1').css({
+                'font-family': 'Times New Roman',
+                'font-size': '20px'
+            });
+
+            //4
+            $('#task3').after('<div id="task4"><ul>' +
+                '<li>Первый элемент</li>' +
+                '<li>text</li>' +
+                '<li>Третий элемент</li>' +
+                '<li>text</li>' +
+                '<li>Пятый элемент</li>' +
+                '</ul></div>');
+
+            $('#task4 li:contains("text")').css('color', 'red');
+
+            //5
+            $('#task4').after('<div id="task5"><ol>' +
+                '<li>Элемент 1</li>' +
+                '<li>Элемент 2</li>' +
+                '<li>Элемент 3</li>' +
+                '<li>Элемент 4</li>' +
+                '</ol></div>');
+
+            $('#task5 li').each(function(index) {
+                $(this).text(index + 1);
+            });
+
+            //6
+            $('#task5').after('<div id="task6">' +
+                '<p id="p1">Параграф 1</p>' +
+                '<p id="p2">Параграф 2</p>' +
+                '<p id="p3">Параграф 3</p>' +
+                '<p id="p4">Параграф 4</p>' +
+                '</div>');
+
+            $('#task6 p').map(function(index) {
+                $(this).attr('id', index + 1);
+            });
+        });
+    </script>
+</body>
+</html>

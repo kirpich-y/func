@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Все задания по событиям и анимации</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        section { margin-bottom: 30px; padding: 15px; border: 1px solid #ddd; }
+        h2 { margin-top: 0; }
+        
+        .clickable-p { cursor: pointer; padding: 5px; }
+        .clickable-p:hover { background-color: #f0f0f0; }
+        
+        #block {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: width 1100ms;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h2>1. Вывод содержимого абзаца по клику</h2>
+        <p class="clickable-p">Первый абзац с текстом</p>
+        <p class="clickable-p">Второй абзац с другим текстом</p>
+        <p class="clickable-p">Третий абзац с произвольным содержимым</p>
+    </section>
+
+    <section>
+        <h2>2. Квадрат числа по клику</h2>
+        <p class="clickable-p">2</p>
+        <p class="clickable-p">5</p>
+        <p class="clickable-p">10</p>
+        <p class="clickable-p">15</p>
+    </section>
+
+    <section>
+        <h2>3. Показ href при наведении</h2>
+        <a href="https://google.com">Google</a><br>
+        <a href="https://yandex.ru">Yandex</a><br>
+        <a href="https://github.com">GitHub</a>
+    </section>
+
+    <section>
+        <h2>4. Добавление "!" по первому клику</h2>
+        <p class="clickable-p">Абзац 1</p>
+        <p class="clickable-p">Абзац 2</p>
+        <p class="clickable-p">Абзац 3</p>
+    </section>
+
+    <section>
+        <h2>5. Анимация увеличения ширины</h2>
+        <div id="block"></div>
+        <p>Кликните на блок, чтобы увеличить его ширину</p>
+    </section>
+
+    <script>
+        //1
+        document.querySelectorAll('section:nth-of-type(1) p').forEach(p => {
+            p.addEventListener('click', function() {
+                alert(this.textContent);
+            });
+        });
+
+        //2
+        document.querySelectorAll('section:nth-of-type(2) p').forEach(p => {
+            p.addEventListener('click', function() {
+                const num = parseInt(this.textContent);
+                this.textContent = `${num}² = ${num * num}`;
+            });
+        });
+
+        //3
+        document.querySelectorAll('section:nth-of-type(3) a').forEach(link => {
+            link.addEventListener('mouseenter', function() {
+                if (!this.dataset.originalText) {
+                    this.dataset.originalText = this.textContent;
+                }
+                this.textContent = `${this.dataset.originalText} (${this.href})`;
+            });
+            
+            link.addEventListener('mouseleave', function() {
+                this.textContent = this.dataset.originalText;
+            });
+        });
+
+        //4
+        document.querySelectorAll('section:nth-of-type(4) p').forEach(p => {
+            p.addEventListener('click', function() {
+                if (!this.dataset.clicked) {
+                    this.textContent += '!';
+                    this.dataset.clicked = true;
+                }
+            });
+        });
+
+        //5
+        document.getElementById('block').addEventListener('click', function() {
+            this.style.width = '200px';
+        });
+    </script>
+</body>
+</html>
